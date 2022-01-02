@@ -21,26 +21,28 @@ const RegisterScreen = ({navigation}) => {
 Registration State
 ===============================
 */
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
+  const [firstname, setFirstname] = useState(null);
+  const [lastname, setLastname] = useState(null);
   const [phone, setPhone] = useState(null);
   const [code, setCode] = useState(null);
-  const [passwd, setPasswd] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const onUserRegistered = async () => {
     const registrationData = {
-      firstName: firstName,
-      username: firstName,
-      email: '',
-      lastName,
+      firstname,
+      firstname,
+      username,
+      email,
       phone,
-      password: passwd,
+      password,
       confirmationToken: code,
       resetPasswordToken: '',
       provider: 'local',
       role: 1,
       confirm: true,
-      block: false,
+      blocked: false,
     };
 
     await register(registrationData, navigation);
@@ -68,26 +70,56 @@ Registration State
             First Name
           </Text>
           <TextInput
-            defaultValue={firstName}
-            onChangeText={fName => setFirstName(fName)}
+            defaultValue={firstname}
+            onChangeText={fName => setFirstname(fName)}
             style={{
               borderColor: bgColor,
               borderWidth: 1,
               borderRadius: 5,
               marginBottom: 10,
+              color: lightDark,
             }}
           />
           <Text style={{fontSize: 18, marginBottom: 8, color: lightDark}}>
             Last Name
           </Text>
           <TextInput
-            defaultValue={lastName}
-            onChangeText={lName => setLastName(lName)}
+            defaultValue={lastname}
+            onChangeText={lName => setLastname(lName)}
             style={{
               borderColor: bgColor,
               borderWidth: 1,
               borderRadius: 5,
               marginBottom: 10,
+              color: lightDark,
+            }}
+          />
+          <Text style={{fontSize: 18, marginBottom: 8, color: lightDark}}>
+            User Name
+          </Text>
+          <TextInput
+            defaultValue={username}
+            onChangeText={uName => setUsername(uName)}
+            style={{
+              borderColor: bgColor,
+              borderWidth: 1,
+              borderRadius: 5,
+              marginBottom: 10,
+              color: lightDark,
+            }}
+          />
+          <Text style={{fontSize: 18, marginBottom: 8, color: lightDark}}>
+            Email
+          </Text>
+          <TextInput
+            defaultValue={email}
+            onChangeText={mail => setEmail(mail)}
+            style={{
+              borderColor: bgColor,
+              borderWidth: 1,
+              borderRadius: 5,
+              marginBottom: 10,
+              color: lightDark,
             }}
           />
           <Text style={{fontSize: 18, marginBottom: 8, color: lightDark}}>
@@ -101,6 +133,7 @@ Registration State
               borderWidth: 1,
               marginBottom: 10,
               borderRadius: 5,
+              color: lightDark,
             }}
           />
           <Text style={{fontSize: 18, marginBottom: 8, color: lightDark}}>
@@ -114,23 +147,25 @@ Registration State
               borderColor: bgColor,
               borderWidth: 1,
               borderRadius: 5,
+              color: lightDark,
             }}
           />
           <Text style={{fontSize: 18, marginBottom: 8, color: lightDark}}>
             Create Password
           </Text>
           <TextInput
-            defaultValue={passwd}
-            onChangeText={passWd => setPasswd(passWd)}
+            defaultValue={password}
+            onChangeText={passwd => setPassword(passwd)}
             style={{
               marginBottom: 10,
               borderColor: bgColor,
               borderWidth: 1,
               borderRadius: 5,
+              color: lightDark,
             }}
           />
           <TouchableOpacity
-            onPress={() => onUserRegistered()}
+            onPress={onUserRegistered}
             style={{
               alignSelf: 'center',
               width: '100%',
@@ -175,7 +210,11 @@ Registration State
                   textAlign: 'center',
                 }}>
                 Already have an account?{' '}
-                <Text style={{color: bgColor}}>Log In</Text>
+                <Text
+                  style={{color: bgColor}}
+                  onPress={() => navigation.navigate('Login')}>
+                  Log In
+                </Text>
               </Text>
             </View>
           </View>

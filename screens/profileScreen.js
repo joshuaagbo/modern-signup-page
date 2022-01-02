@@ -35,7 +35,7 @@ Profile State
   });
 
   const onProfileRequest = async () => {
-    const profileRes = await onGetUserProfile(route.params?.username || null);
+    const profileRes = await onGetUserProfile(route.params?.email || null);
     //do somthing if respoonse type is error
     //e.g set ErrorState
     if (profileRes.type === 'error') {
