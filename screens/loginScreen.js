@@ -9,7 +9,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {onUserLogin} from '../utils/services';
+import {userLogin} from '../utils/services';
 
 const bgColor = '#770AFE';
 const lightDark = '#444';
@@ -24,13 +24,13 @@ const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const userLogin = async () => {
+  const loginUser = async () => {
     const loginData = {
       email,
       password,
     };
 
-    await onUserLogin(loginData, navigation);
+    await userLogin(loginData, navigation);
   };
 
   return (
@@ -80,7 +80,7 @@ const LoginScreen = ({navigation}) => {
             }}
           />
           <TouchableOpacity
-            onPress={userLogin}
+            onPress={loginUser}
             style={{
               alignSelf: 'center',
               width: '100%',

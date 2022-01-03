@@ -1,25 +1,27 @@
 import axios from 'axios';
 
 //init registration
-export const register = async (registrationData, navigation) => {
-  try {
-    const registrationDataJson = JSON.stringify(registrationData);
+export const userRegistration = (registrationData, navigation) => {
+  const registrationDataJson = JSON.stringify(registrationData);
+  console.log(registrationDataJson);
 
-    const res = await axios.post(
+  axios
+    .post(
       'http://134.122.92.247:1336/auth/local/register',
       registrationDataJson,
-    );
-
-    console.log('Response Data: ', res);
-    navigation.navigate('Login');
-  } catch (error) {
-    navigation.navigate('Login');
-    console.log(error);
-  }
+    )
+    .then(registrationRes => {
+      console.log(registrationRes);
+      navigation.navigate('Login');
+    })
+    .catch(err => {
+      console.log(err);
+      navigation.navigate('Login');
+    });
 };
 
 //init user login
-export const onUserLogin = async (loginData, navigation) => {
+export const userLogin = async (loginData, navigation) => {
   try {
     const loginJson = JSON.stringify(loginData);
 

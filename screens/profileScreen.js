@@ -66,7 +66,7 @@ Profile State
             }}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
-              style={{flexDirection: 'row', alignItems: 'center'}}>
+              style={{flexDirection: 'row', alignItems: 'center', width: 45}}>
               <Ionicons name={'chevron-back-outline'} size={30} color={color} />
               <Text
                 style={{

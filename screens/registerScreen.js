@@ -9,7 +9,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-import {register} from '../utils/services';
+import {userRegistration} from '../utils/services';
 
 const bgColor = '#770AFE';
 const lightDark = '#444';
@@ -29,23 +29,23 @@ Registration State
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const onUserRegistered = async () => {
+  const registerUser = () => {
     const registrationData = {
       firstname,
-      firstname,
+      lastname,
       username,
       email,
       phone,
       password,
-      confirmationToken: code,
-      resetPasswordToken: '',
+      confirmationToken: code || 'string',
+      resetPasswordToken: 'string',
       provider: 'local',
       role: 1,
-      confirm: true,
+      confirmed: true,
       blocked: false,
     };
 
-    await register(registrationData, navigation);
+    userRegistration(registrationData, navigation);
   };
 
   return (
@@ -127,7 +127,7 @@ Registration State
           </Text>
           <TextInput
             defaultValue={phone}
-            onChangeText={phone => setPhone(phone)}
+            onChangeText={number => setPhone(number)}
             style={{
               borderColor: bgColor,
               borderWidth: 1,
@@ -141,7 +141,7 @@ Registration State
           </Text>
           <TextInput
             defaultValue={code}
-            onChangeText={code => setCode(code)}
+            onChangeText={isCode => setCode(isCode)}
             style={{
               marginBottom: 10,
               borderColor: bgColor,
@@ -165,7 +165,7 @@ Registration State
             }}
           />
           <TouchableOpacity
-            onPress={onUserRegistered}
+            onPress={registerUser}
             style={{
               alignSelf: 'center',
               width: '100%',
